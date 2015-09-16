@@ -1,0 +1,692 @@
+ /**
+ * Práctica No. 2. Identificar modos de direccionamiento en la tabla de códigos de operación. Modificar el
+ * programa anterior para que se busque el conjunto de instrucciones identificado e identificar cuales modos de
+ * direccionamiento le corresponde a cada instrucción.
+ * @author: Eduardo Armando Villarreal Garcia
+ * @version: 15/sep/2015
+ * @see <a href = "http://michelletorres.mx/manejo-de-archivos-en-java/"
+ * @see <a href = "http://michelletorres.mx/programacion-orientada-a-objetos-con-java/"
+ */
+
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.Vector;
+import java.lang.*;
+
+
+ /**
+ * La clase practica2 contiene los siguientes metodos: 
+ *
+ * boolean Espacios(String linea);
+ * String arreglarArchivo(String nom_archivo);
+ * void comentario(String cadena);
+ * void Eliminar(String pArchivo);
+ * String tabop(String archivoTabop);
+ * boolean Verificar(String palabra);
+ */
+
+
+public class practica2 {	
+
+/**
+* Declaracion de variables estaticas y vectores.
+* @param cont_linea El parametro cont_linea de tipo entero, registra los numeros de las lineas.
+* @param modos El parametro modos es un vector de tipo string usado para almacenar los modos de direccionamiento de cada instruccion.
+* @param flagInh El parametro flagInh de tipo boolean, se usa como bandera para identificar si algun modo de direccionamiento es Inherente.
+* @param archTabop El parametro archTabop de tipo string, es utilizado para almacenar el nombre del archivo temporal, usado por el metodo tobop().
+*/
+
+	public static int cont_linea = 1;
+	static Vector<String> modos = new Vector<String>();
+	public static boolean flagInh;
+	public static String archTabop;
+
+/**
+* Este es el metodo principal que hace posible todos los anteriores metodos.
+* @param args No utilizado.
+*/
+	public static void main(String [] arg){			
+		practica2 pract2 = new practica2();
+
+/**
+* Declaracion e inicializacion de parametros de tipo int, string y boolean, utilizados por el metodo principal.
+*/
+
+		String comentario = "----", etq = "----", oper = "----", codop = "----";
+		String archivo_1 = null;
+		String palabra = null;
+		String lineaCompleta = null;
+		String Archivo = null;
+		String nomArchivo = null;
+
+		int cont_vector = 1;
+		int posicion = 0;
+
+		boolean espacioLinea = false;
+		boolean flag_end = false;
+		boolean band_comentario;
+		boolean band_codop;
+		boolean band_etq;
+		boolean band_oper;
+		boolean flag3,flag4;
+
+		try{
+/**
+* Se pide al usuario que ingrese la ruta del archivo .asm a leer.
+* @param Archivo Al parametro Archivo se le asigna el nombre del archivo escrito anteriormente por el usuario.
+*/
+		Scanner ruta = new Scanner(System.in);
+		System.out.println("Ejemplo: /root/Desktop/ejemplo.asm");
+		System.out.print("Ingrese la ruta del archivo: ");	
+		Archivo = ruta.nextLine();
+		System.out.println("RUTA:  " +Archivo);
+
+/**
+* Llamada al metodo arreglarArchivo, devolviendo como parametro el nombre del archivo temporal.
+* @param archivo_1 Al parametro archivo_1 se le asigna el nombre con la cadena que regresa.
+*/
+
+		archivo_1 = pract2.arreglarArchivo(Archivo);
+
+/**
+* Creacion y lectura de archivos a utilizar.
+*/
+
+		FileInputStream fstream1 = new FileInputStream(archivo_1);
+		DataInputStream asmAleer1 = new DataInputStream(fstream1);      
+		BufferedReader buffer1 = new BufferedReader(new InputStreamReader(asmAleer1)); 
+
+		File archInst = new File(Archivo +".inst");
+		FileWriter writerInst = new FileWriter(archInst);
+			PrintWriter inst = new PrintWriter(writerInst);
+
+		File archErr = new File(Archivo +".err");
+		FileWriter writerErr = new FileWriter(archErr);
+			PrintWriter err = new PrintWriter(writerErr);
+/**
+* Escribe en los archivos ".ins" y ".err" los encabezados.
+*/	
+
+		err.write("\n......................ERRORES ENCONTRADOS.......................\n Linea\n\n");
+		inst.write("\n LINEA\t\tETQ\t\tCODOP\t\tOPER\t\t\tMODOS\n");
+		inst.write("..........................................................................................................\n\n");
+
+/**
+* Se inicia el ciclo de lectura linea por linea del archivo ".asm".
+* @param lineaCompleta El parámetro lineaCompleta contiene toda una linea del archivo.
+*/	
+
+		while ((lineaCompleta = buffer1.readLine()) != null ){
+
+/**
+* Inicializacion de variables dentro del ciclo while.
+*/
+		etq = "----";
+		codop = "----";
+		oper = "----";
+		comentario = "----";
+		flag3 = false;
+		flag4 = false;
+		band_comentario = false;
+		band_codop = false;
+		band_etq = false;
+		band_oper = false;
+/**
+* Cada linea se separa en tokens, para analizar cada palabra una por una.
+*/
+
+		StringTokenizer tokens = new StringTokenizer(lineaCompleta);
+
+		while(tokens.hasMoreTokens()){	
+
+/**
+* Se manda llamar al metodo Espacios(), para checar si existe espacio o tabulador al comienzo de la linea.
+* @param espacioLinea El parámetro espacioLinea es de tipo boolean y se le asigna true o false, segun lo que regrese el metodo Espacios().
+* @param posicion Al parámetro posicion de tipo entero se le asigna el valor 0 en cada inicio de linea.
+*/
+
+		espacioLinea = pract2.Espacios(lineaCompleta);
+		posicion = 0;
+
+/**
+* @param palabra Al parámetro palabra de tipo string le es asignado el siguiente token.
+*/
+
+		palabra = tokens.nextToken();
+
+/**
+* Validacion de comentarios, se identifica si el parametro palabra contiene al caracter de ";" con una expresion regular.
+* Se utiliza el metodo indexOf(), para obterner el indice de comienzo de una subcadena dentro de otra. (identifica ";").
+* El metodo substring(), devuelve una nueva cadena que es subcadena de esta cadena.
+* Se llama al metodo comentario() para mostrar todo el comentario en consola.(opcional)
+* Se utiliza el metodo matches() para comparar el parametro palabra con una expresion regular.
+* @param posicion El parametro posicion devuelve un numero entero.
+* @param comentario Al parametro comentario se le asigna la cadena leida a partir de la posicion del parametro posicion.
+*/
+	
+		if(palabra.matches(";[A-Za-z0-9]*")){        	
+			posicion = lineaCompleta.indexOf(";");   //obtiene el índice de comienzo de una subcadena dentro de otra
+			comentario = lineaCompleta.substring(posicion); //Returns a new string that is a substring of this string.
+			//pract2.comentario(comentario); **
+			break;
+		}//if
+		else{
+/**
+* Si el metodo Espacios() devuelve falso, entra la validacion de etiquetas, instrucciones y operadores.
+* @param espacioLinea El parámetro espacioLinea es de tipo boolean y se le asigna true o false, segun lo que regrese el metodo Espacios().
+*/
+
+		if(espacioLinea == false){
+
+/**
+* Validacion de etiquetas, entramos en la condicion si el parametro band_etq es falso.
+* Se utiliza el metodo matches() para comparar el parametro palabra con una expresion regular.
+* Se utiliza el metodo length() para calcular el tamaño del string.
+* Ademas se utilizan los metodos isDigit() para identificar si un caracter es digito, y charAt() para identificar el caracter en una posicion especifica.
+* @param band_etq Al parametro band_etq de tipo boolean se le asigna true segun se cumpla la condicion.
+* @param etq Al parametro etq de tipo string se le asigna lo que contiene el parametro palabra.
+*/
+
+		if(band_etq == false){
+			if(palabra.matches("[a-zA-Z0-9]+[A-Za-z0-9_]*")){
+				if(palabra.length() <= 8){
+					if(Character.isDigit(palabra.charAt(0))){
+						err.write("   "+cont_linea+"... La etiqueta \"" +palabra+ "\" comienza con digito\n");
+						band_etq = true;		
+					}//if
+					else{
+						etq = palabra;
+						band_etq = true;
+					}//else				
+				}//if	
+				else{
+					err.write("   "+cont_linea+"... La etiqueta \"" +palabra+ "\" es demasiado larga\n");
+					band_etq = true;
+				}//else	
+			}//if
+			else{
+				err.write("   "+cont_linea+"... La etiqueta \"" +palabra+ "\" contiene caracteres invalidos\n");
+				band_etq = true;
+			}//else						
+		}//if
+		else{
+
+/**
+* Validacion de instrucciones aun si el parametro espacioLinea es falso, entramos en la condicion si la palabra...
+* ... es valida por la expresion regular, el parametro band_codop de tipo boolean es falso y ademas el tamaño de la palabra es menor o igual a 5.
+* Se manda llamar al metodo Verificar de tipo boolean para comprobar si la palabra esta o no en el archivo tabop.txt.
+* @param band_codop Al parametro band_codop de tipo boolean se le asigna true segun se cumpla la condicion.
+* @param codop Al parametro codop de tipo string se le asigna lo que contiene el parametro palabra.
+*/
+
+			if(palabra.matches("[A-Za-z]+[.]*[A-Za-z]+") && band_codop == false && palabra.length() <= 5){
+				if(pract2.Verificar(palabra)){
+					codop = palabra;  
+					band_codop = true; 				
+				}//if
+				else{
+					err.write("   " +cont_linea+ "...La palabra \"" +palabra+ "\" No encontrada \n");
+				}//else
+			}//if
+			else{
+				if(band_codop == false){
+					if(palabra.length() <= 5){
+						if(Character.isDigit(palabra.charAt(0)) && palabra.length() > 1){
+							err.write("   " +cont_linea+ "... Codop \"" +palabra+ "\" comienza con digito\n");
+							band_codop = true;
+							flag3 = true;
+						}//if
+						else{
+							if(palabra.length() < 2){
+								err.write("   " +cont_linea+ "... Codop \"" +palabra+ "\" demasiado corto\n");
+								band_codop = true;
+								flag3 = true;
+							}//if
+							else{
+								err.write("   " +cont_linea+ "... Codop \"" +palabra+ "\" contiene caracteres invalidos\n");
+								band_codop = true;
+								flag3 = true; 
+							}//else
+						}//else
+					}//if
+					else{
+						err.write("   " +cont_linea+ "... Codop \"" +palabra+ "\" demasiado largo\n");
+						band_codop = true;
+						flag3 = true;
+					}//else
+				}//if
+				else{
+					if(band_oper == false){
+						oper = palabra;
+						band_oper = true; 						
+					}//if
+					else{
+						err.write("   " +cont_linea+ "... La palabra \"" +palabra+ "\" no identificada\n");
+					}//else
+				}//else
+			}//else
+		}//else						
+	}//if
+	else{
+
+/**
+* Validacion de instrucciones, si el parametro espacioLinea es true.
+* Si la palabra es valida por la expresion regular, el parametro band_codop de tipo boolean es falso y ademas el tamaño de la palabra es menor o igual a 5.
+* Se manda llamar al metodo Verificar de tipo boolean para comprobar si la palabra esta o no en el archivo tabop.txt.
+* @param band_codop Al parametro band_codop de tipo boolean se le asigna true segun se cumpla la condicion.
+* @param codop Al parametro codop de tipo string se le asigna lo que contiene el parametro palabra.
+*/
+	
+		if(espacioLinea == true){
+			if(palabra.matches("[A-Za-z]+[.]*[A-Za-z]+") && band_codop == false && palabra.length() <= 5){            
+				if(pract2.Verificar(palabra)){
+					codop = palabra;         
+					band_codop = true; 				
+				}//if
+				else{
+					err.write("   " +cont_linea+ "...La palabra \"" +palabra+ "\" No encontrada \n");
+				}//else					
+			}//if
+			else{
+				if(band_codop == false){
+					if(palabra.length() <= 5){
+						if(Character.isDigit(palabra.charAt(0)) && palabra.length() > 1){
+							err.write("   " +cont_linea+ "... Codop \"" +palabra+ "\" comienza con digito\n");
+							band_codop = true;
+							flag3 = true;
+						}//if
+						else{
+							if(palabra.length() < 2){
+								err.write("   " +cont_linea+ "... Codop \"" +palabra+ "\" demasiado corto\n");
+								band_codop = true;
+								flag3 = true;
+							}//if
+							else{
+								err.write("   " +cont_linea+ "... Codop \"" +palabra+ "\" contiene caracteres invalidos\n");
+								band_codop = true;
+								flag3 = true; 
+							}//else
+						}//else
+					}//if
+					else{
+						err.write("   " +cont_linea+ "... Codop \"" +palabra+ "\" demasiado largo\n");
+						band_codop = true;
+						flag3 = true; 
+					}//else
+				}//if
+				else{
+
+/**
+* Validacion de operadores, el parametro espacioLinea es true.
+* La palabra al haber pasado por todas las condiciones y no cumplirse se le asigno como operador.
+* @param band_oper El parametro band_oper de tipo boolean entra en la condicion si el falso.
+* @param oper Al parametro oper de tipo string se le asigna lo que contiene el parametro palabra.
+*/
+
+								if(band_oper == false){
+									oper = palabra;
+									band_oper = true;						
+								}//if
+								else{
+									err.write("   " +cont_linea+ "... La palabra \"" +palabra+ "\" no identificada\n");
+								}//else
+							}//else	
+						}//else	
+					}//if
+				}//else
+			}//else
+
+		}//while  
+/**
+* Escritura de los resultados obtenidos para los parametros cont_linea, etq, codop y oper, segun se cumpla las condicionantes de los resultados de las banderas.
+* Si la bandera flagInh es true, al parametro oper se le asigna null, esto quiere decir que la instruccio fue de direccionamiento inherente por lo tanto
+* no lleva operando y se manda mensaje de error, caso contrario escribe en el archivo .inst los resultados.
+* Se escribe en el archivo .inst ademas,lo almacenado en el vector modos con todos los direccionamientos que se encontraron para esa instruccion.
+*/
+
+		if(band_etq == true && band_codop == true && band_oper == true && flag3 == false){
+			if(flagInh == true){
+				oper = null;
+				err.write("   " +cont_linea+ "... El codop \"" +codop+ "\" No lleva operador\n");
+			}//if
+			inst.write("   "+cont_linea+"\t\t"+etq+"\t\t"+codop+"\t\t"+oper+"\t");
+		   	for(String modo : modos) { inst.write(modo+" "); }
+			inst.write("\n");
+		}//if
+		else{
+			if(band_etq == true && band_codop == true && flag3 == false){
+				inst.write("   "+cont_linea+"\t\t"+etq+"\t\t"+codop+"\t\t"+oper+"\t");
+		   		for(String modo1 : modos) { inst.write(modo1+" "); }
+				inst.write("\n");
+			}//if
+			else{
+				if(band_codop == true && band_oper == true && flag3 == false){
+					if(flagInh == true){
+						oper = null;
+						err.write("   " +cont_linea+ "... El codop \"" +codop+ "\" No lleva operador\n");
+					}//if
+					inst.write("   "+cont_linea+"\t\t"+etq+"\t\t"+codop+"\t\t"+oper+"\t");
+			   		for(String modo2 : modos) { inst.write(modo2+" "); }
+					inst.write("\n");
+				}//if
+				else{
+					if(band_codop == true && flag3 == false){
+						inst.write("   "+cont_linea+"\t\t"+etq+"\t\t"+codop+"\t\t"+oper+"\t");
+				   		for(String modo3 : modos) { inst.write(modo3+" "); }
+						inst.write("\n");
+					}//if
+					else{
+						if(band_etq == true && band_codop == false && band_oper == false){
+							err.write("   "+cont_linea+"... Combinacion NO Valida (etq |---|---)\n");
+						}//if
+						else{
+							if(band_etq == true && band_oper == true ){
+								err.write("   "+cont_linea+"... Combinacion NO Valida (etq |---|oper)\n");
+							}//if
+							else{
+								if(band_oper == true ){
+									err.write("   "+cont_linea+"... Combinacion NO Valida (---|---|oper)\n");
+								}//if
+							}//else
+						}//else
+					}//else
+				}//else
+			}//else
+		}//else
+/**
+* Se utiliza el metodo equalsIgnoreCase() para comparar no importando mayusculas ni minusculas, si la instruccion es igual a END, donde si se cumple
+* se interrumpe la lectura del archivo y mandando un mensaje en consola al usuario.
+* En el caso de que no se encuentre la instruccion END, se escribe en el archivo de errores.
+* Se incrementa el parametro cont_linea en uno y se limpia el vector modos para volver a ser utilizado.
+* Se cierran los archivos ".inst", ".err" y ".asm". Ademas se manda llamar al metodo Eliminar() para eliminar los archivos temporales.
+* Cierre del metodo principal main.
+*/
+
+				if(codop.equalsIgnoreCase("END")){
+					//System.out.println("\n   "+cont_linea+"... LECTURA INTERRUMPIDA SE ENCONTRO LA DIRECTIVA \""+codop+"\"\n");
+					flag_end = true;
+					break;
+				}//if	
+				modos.clear();
+				cont_linea++;
+			}//while
+			System.out.println("\n\n\tListo !!!!\n\n");
+			inst.write("..........................................................................................................\n\n");
+			if(flag_end == false){
+				err.write("\n ERROR... NO se encontro la directiva \"END\"\n");
+			}//if								
+			inst.close();
+			err.close();
+			asmAleer1.close();
+			Eliminar(archivo_1);
+			Eliminar(archTabop);
+		}//try
+		catch (Exception e){  //Catch de excepciones
+			e.printStackTrace();
+			System.err.println("\nERROR #3..." + e.getMessage());
+		}//catch
+	}//main
+	
+
+
+/**
+* Método Espacios que devuelve verdadero o falso dependiendo si encuentra espacios o tabuladores al principio de la linea.
+* @return true si la linea en la posicion 0 tiene espacio o tabulador.
+* @param linea El parametro linea de tipo string contiene la linea leida en el archivo ".asm".
+*/
+	
+		public boolean Espacios(String linea){
+			if(linea.charAt(0) == ' ' || linea.charAt(0) == '\t'){
+				return true;
+			}//if
+			return false;
+		}//Espacios
+	
+
+/**
+* Método arreglarArchivo de tipo string que lee el archivo ".asm", busca los comentarios, los separa con espacios y crea un nuevo archivo temporal para su mejor comprension. 
+* Devuelve el nombre del archivo temporal creado.
+* @return ret_archivo, el nombre del archivo temporal.
+* @param nom_archivo El parametro nom_archivo de tipo string contiene el nombre del archivo ".asm".
+*/
+	
+		public String arreglarArchivo(String nom_archivo){
+			String lineaCompleta1 = null;
+			String ret_archivo = nom_archivo+".temporal";
+			try{
+				FileInputStream fstream = new FileInputStream(nom_archivo);
+				DataInputStream asmAleer = new DataInputStream(fstream);      
+				BufferedReader buffer = new BufferedReader(new InputStreamReader(asmAleer)); 
+	
+				File arch_1 = new File(ret_archivo);
+				FileWriter writer1 = new FileWriter(arch_1);
+	    			PrintWriter asmBien = new PrintWriter(writer1);
+	
+				while ((lineaCompleta1 = buffer.readLine()) != null){
+					for (int i = 0; i < lineaCompleta1.length(); i++){
+						if(lineaCompleta1.charAt(i) == ';'){
+							asmBien.write("\t");
+						}//if
+						asmBien.write(lineaCompleta1.charAt(i));
+					}//for
+					asmBien.write("\n");
+				}//while
+				asmAleer.close(); 
+				asmBien.close();
+			}//try
+			catch (Exception e){ 
+				e.printStackTrace();
+				System.err.println("\nERROR #1..." + e.getMessage());
+			}//catch
+			return ret_archivo;
+		}//arreglarArchivo
+
+
+/**
+* Método comentario de tipo void que muestra, el numero de linea y el comentario encontrado en el archivo ".asm".(opcional)**
+* @param cadena, contiene el comentario. 
+*/
+
+		public void comentario(String cadena){
+			if(cadena != null){
+				System.out.println("LINEA-> "+cont_linea+"... COMENTARIO-> "+cadena+"\n");
+			}//try
+		}//comentario
+	
+
+/**
+* Método estatico Eliminar de tipo void que elimina los archivos temporales. 
+* @param pArchivo, contiene el nombre del archivo. 
+* @exception Exception On input error.
+* @see IOException
+*/
+
+		public static void Eliminar(String pArchivo) throws Exception {
+			try {
+				File fichero = new File(pArchivo);
+				if (!fichero.delete())
+					throw new Exception("El fichero " +pArchivo+ " No puede ser borrado.");
+			}//try
+			catch (Exception e){
+				throw new Exception(e);
+			}//catch
+		}//Eliminar
+		
+
+/**
+* Método tabop de tipo string que lee el archivo "tabop.txt" e identifica cada instruccion(codop) e identifica y calcula los bytes de cada codop.
+* Este metodo crea un archivo temporal llamado "newtabop.txt", donde al finalizar el metodo main se elimina. 
+* ejemplo de salida para este archivo: (instruccion|modo dir|codigo maquina|bytes calculados|bytes por calcular|suma de bytes). 
+* @param archivoTabop El parametro de tipo string archivoTabop contiene el nombre del archivo de la tabla de operaciones.  
+* @return archTabop, el nombre del archivo temporal creado.  
+*
+*/
+
+		public String tabop(String archivoTabop){
+			String lineaCompleta2 = null;
+			String arch_tabop = "tabop.txt";
+			archTabop = "new"+ arch_tabop;
+			String word = null;
+			String codop = null, modo = null, codigoMaquina = null;
+			int cont_CM;
+			int bytCal;
+			int a,b,sum;
+			boolean flagCodop;
+			boolean flagModo;
+			boolean flagHex;
+			boolean dir;
+			try{
+				FileInputStream fstream2 = new FileInputStream(arch_tabop);
+				DataInputStream leer_tabop = new DataInputStream(fstream2);      
+				BufferedReader buffer2 = new BufferedReader(new InputStreamReader(leer_tabop)); 
+				File arch_2 = new File(archTabop);
+				FileWriter writer2 = new FileWriter(arch_2);
+	    			PrintWriter tabop_bien = new PrintWriter(writer2);
+				while((lineaCompleta2 = buffer2.readLine()) != null){
+					codop = "-";
+					modo = "-";
+					codigoMaquina = "-";
+					cont_CM = 0;
+					bytCal = 0;
+					a = 0;
+					b = 0;
+					sum = 0;
+					flagCodop = false;
+					flagModo = false;
+					flagHex = false;
+					dir = false;
+					StringTokenizer tokenAux = new StringTokenizer(lineaCompleta2,"|");					
+					while(tokenAux.hasMoreTokens()){ 
+						word = tokenAux.nextToken();
+						if(flagCodop == false){
+							switch(word){
+								case "ORG":   {tabop_bien.write(word+"\n");dir = true;break;}
+								case "END":   {tabop_bien.write(word+"\n");dir = true;break;}
+								case "DCB":   {tabop_bien.write(word+"\n");dir = true;break;}
+								case "EQU":   {tabop_bien.write(word+"\n");dir = true;break;}
+								case "DCB.B": {tabop_bien.write(word+"\n");dir = true;break;}
+								case "DCB.L": {tabop_bien.write(word+"\n");dir = true;break;}
+								case "FCC":   {tabop_bien.write(word+"\n");dir = true;break;}
+								case "DS":    {tabop_bien.write(word+"\n");dir = true;break;}
+								case "DS.B":  {tabop_bien.write(word+"\n");dir = true;break;}
+								case "DS.W":  {tabop_bien.write(word+"\n");dir = true;break;}
+								case "DS.L":  {tabop_bien.write(word+"\n");dir = true;break;}
+								case "DC.B":  {tabop_bien.write(word+"\n");dir = true;break;}
+								default:      {codop = word; flagCodop = true;}
+							}//switch
+						}//if
+						else{
+							if(flagModo == false){
+								modo = word;
+								flagModo = true;
+							}//if
+							else{
+								if(flagHex == false) {
+									codigoMaquina = word;                
+			  					  	for(String hola : word.split(" ")){
+                                                                                if(hola.matches("[A-F0-9]+")){
+											cont_CM++;
+										}//if
+                                                                                if(hola.matches("[a-z]+")){
+											bytCal++;
+										}//if
+									}//for
+									flagHex = true;
+								}//if
+							}//else
+						}//else 
+					}//while
+					a = cont_CM;
+					b = bytCal;
+					sum = a + b;
+					if(dir==false){
+						tabop_bien.write(codop+"|"+modo+"|"+codigoMaquina+"|"+a+"|"+b+"|"+sum+"\n");
+					}//if
+				}//while
+				leer_tabop.close();
+				tabop_bien.close(); 
+			}//try
+			catch (Exception e){ 
+				e.printStackTrace();
+				System.err.println("\nERROR #1..." + e.getMessage());
+			}//catch
+			return archTabop;
+		}//tabop
+
+
+/**
+* Método Verificar de tipo boolean que devuelve true o false dependiendo si la comparacion de la palabra leida contra el tabop existe.
+* Tambien se identifica cuales son los modos de direccionamiento inherentes.
+* @return palabra El parametro palabra contiene la cadena leida por el metodo main para ser comparada.
+* @return true encuentra la instruccion en el tabop o false de lo contrario.
+*/
+	
+		public boolean Verificar(String palabra){
+			String archivoTabop = null;
+			String nomTabop = tabop(archivoTabop);
+			String lineaTabop = null;
+			String word = null;
+			String temporal = null;
+			boolean flag = false;
+			flagInh = false;
+			try{
+				FileInputStream fstream3 = new FileInputStream(nomTabop);
+				DataInputStream leerTabop = new DataInputStream(fstream3);      
+				BufferedReader buffer3 = new BufferedReader(new InputStreamReader(leerTabop)); 
+				while((lineaTabop = buffer3.readLine()) != null){
+					StringTokenizer tokenAux = new StringTokenizer(lineaTabop,"|");	
+					while(tokenAux.hasMoreTokens()){ 
+						word = tokenAux.nextToken();   
+						if(word.equalsIgnoreCase(palabra)){
+							word = word.toUpperCase();
+							switch(word){
+								case "ORG":   {modos.add(""); flag = true; break;}
+								case "END":   {modos.add(""); flag = true; break;}
+								case "DCB":   {modos.add(""); flag = true; break;}
+								case "EQU":   {modos.add(""); flag = true; break;}
+								case "DCB.B": {modos.add(""); flag = true; break;}
+								case "DCB.L": {modos.add(""); flag = true; break;}
+								case "FCC":   {modos.add(""); flag = true; break;}
+								case "DS":    {modos.add(""); flag = true; break;}
+								case "DS.B":  {modos.add(""); flag = true; break;}
+								case "DS.W":  {modos.add(""); flag = true; break;}
+								case "DS.L":  {modos.add(""); flag = true; break;}
+								case "DC.B":  {modos.add(""); flag = true; break;}
+								default:      {temporal = tokenAux.nextToken(); modos.add(temporal);}
+							}//switch
+							if(temporal.equalsIgnoreCase("INH")){
+
+								flagInh = true;
+							}//if
+							flag = true;
+						}//if
+						else{
+							break;
+						}//if
+					}//while
+				}//while
+				leerTabop.close();
+			}//try
+			catch (Exception e){ 
+				//e.printStackTrace();
+				//System.err.println("\nERROR #2..." + e.getMessage());
+			}//catch
+			if(flag == true){
+				return true;		
+			}//if
+			else	
+				return false;
+		}//Verificar
+
+
+}//practica2
