@@ -1,0 +1,596 @@
+ABA|INH|18 06|2 
+ABX|IDX|1A E5|2 
+ABY|IDX|19 ED|2 
+ADCA|IMM8|89 ii|2 
+ADCA|DIR|99 dd|2 
+ADCA|EXT|B9 hh ll|3 
+ADCA|IDX|A9 xb|2 
+ADCA|IDX1|A9 xb ff|3 
+ADCA|IDX2|A9 xb ee ff|4 
+ADCA|[D,IDX]|A9 xb|2 
+ADCA|[IDX2]|A9 xb ee ff|4 
+ADCB|IMM8|C9 ii|2 
+ADCB|DIR|D9 dd|2 
+ADCB|EXT|F9 hh ll|3 
+ADCB|IDX|E9 xb|2 
+ADCB|IDX1|E9 xb ff|3 
+ADCB|IDX2|E9 xb ee ff|4 
+ADCB|[D,IDX]|E9 xb|2 
+ADCB|[IDX2]|E9 xb ee ff|4 
+ADDA|IMM8|8B ii|2 
+ADDA|DIR|9B dd|2 
+ADDA|EXT|BB hh ll|3 
+ADDA|IDX|AB xb|2 
+ADDA|IDX1|AB xb ff|3 
+ADDA|IDX2|AB xb ee ff|4 
+ADDA|[D,IDX]|AB xb|2 
+ADDA|[IDX2]|AB xb ee ff|4 
+ADDB|IMM8|CB ii|2 
+ADDB|DIR|DB dd|2 
+ADDB|EXT|FB hh ll|3 
+ADDB|IDX|EB xb|2 
+ADDB|IDX1|EB xb ff|3 
+ADDB|IDX2|EB xb ee ff|4 
+ADDB|[D,IDX]|EB xb|2 
+ADDB|[IDX2]|EB xb ee ff|4 
+ADDD|IMM16|C3 jj kk|3 
+ADDD|DIR|D3 dd|2 
+ADDD|EXT|F3 hh ll|3 
+ADDD|IDX|E3 xb|2 
+ADDD|IDX1|E3 xb ff|3 
+ADDD|IDX2|E3 xb ee ff|4 
+ADDD|[D,IDX]|E3 xb|2 
+ADDD|[IDX2]|E3 xb ee ff|4 
+ANDA|IMM8|84 ii|2 
+ANDA|DIR|94 dd|2 
+ANDA|EXT|B4 hh ll|3 
+ANDA|IDX|A4 xb|2 
+ANDA|IDX1|A4 xb ff|3 
+ANDA|IDX2|A4 xb ee ff|4 
+ANDA|[D,IDX]|A4 xb|2 
+ANDA|[IDX2]|A4 xb ee ff|4 
+ANDB|IMM8|C4 ii|2 
+ANDB|DIR|D4 dd|2 
+ANDB|EXT|F4 hh ll|3 
+ANDB|IDX|E4 xb|2 
+ANDB|IDX1|E4 xb ff|3 
+ANDB|IDX2|E4 xb ee ff|4 
+ANDB|[D,IDX]|E4 xb|2 
+ANDB|[IDX2]|E4 xb ee ff|4 
+ANDCC|IMM8|10 ii|2 
+ASL|EXT1|78 hh ll|3 
+ASL|IDX|68 xb |2 
+ASL|IDX1|68 xb ff|3 
+ASL|IDX2|68 xb ee ff|4 
+ASL|[D,IDX]|68 xb|2 
+ASL|[IDX2]|68 xb ee ff|4 
+ASLA|INH|48|1 
+ASLB|INH|58|1 
+ASLD|INH|59|1 
+ASR|EXT1|77 hh ll|3 
+ASR|IDX|67 xb |2 
+ASR|IDX1|67 xb ff|3 
+ASR|IDX2|67 xb ee ff|4 
+ASR|[D,IDX]|67 xb |2 
+ASR|[IDX2]|67 xb ee ff|4 
+ASRA|INH|47|1 
+ASRB|INH|57|1 
+BCC|REL8|24 rr|2 
+BCLR|DIR|4D dd mm|3 
+BCLR|EXT|1D hh ll mm|4 
+BCLR|IDX|0D xb mm|3 
+BCLR|IDX1|0D xb ff mm|4 
+BCLR|IDX2|0D xb ee ff mm|5 
+BCS|REL8|25 rr|2 
+BEQ|REL8|27 rr|2 
+BGE|REL8|2C rr|2 
+BGND|INH|00 |1 
+BGT|REL8|2E rr|2 
+BHI|REL8|22 rr|2 
+BHS|REL8|24 rr|2 
+BITA|IMM8|85 ii|2 
+BITA|DIR|95 dd|2 
+BITA|EXT|B5 hh ll|3 
+BITA|IDX|A5 xb|2 
+BITA|IDX1|A5 xb ff|3 
+BITA|IDX2|A5 xb ee ff|4 
+BITA|[D,IDX]|A5 xb|2 
+BITA|[IDX2]|A5 xb ee ff|4 
+BITB|IMM8|C5 ii|2 
+BITB|DIR|D5 dd|2 
+BITB|EXT|F5 hh ll|3 
+BITB|IDX|E5 xb|2 
+BITB|IDX1|E5 xb ff|3 
+BITB|IDX2|E5 xb ee ff|4 
+BITB|[D,IDX]|E5 xb|2 
+BITB|[IDX2]|E5 xb ee ff|4 
+BLE|REL8|2F rr|2 
+BLO|REL8|25 rr|2 
+BLS|REL8|23 rr|2 
+BLT|REL8|2D rr|2 
+BMI|REL8|2B rr|2 
+BNE|REL8|26 rr|2 
+BPL|REL8|2A rr|2 
+BRA|REL8|20 rr|2 
+BRCLR|DIR|4F dd mm rr|4 
+BRCLR|EXT|1F hh ll mm rr|5 
+BRCLR|IDX|0F xb mm rr|4 
+BRCLR|IDX2|0F xb ff mm rr|5 
+BRCLR|IDX2|0F xb ee ff mm rr|6 
+BRN|REL8|21 rr|2 
+BRSET|DIR|4E dd mm rr|4 
+BRSET|EXT|1E hh ll mm rr|5 
+BRSET|IDX|0E xb mm rr|4 
+BRSET|IDX1|0E XB ff mm rr|5 
+BRSET|IDX2|0E xb ee ff mm rr|6 
+BSET|DIR|4C dd mm|3 
+BSET|EXT|1C hh ll mm|4 
+BSET|IDX|0C xb mm|3 
+BSET|IDX1|0C XB ff mm|4 
+BSET|IDX2|0C xb ee ff mm|5 
+BSR|REL8|07 rr|2 
+BVC|REL8|28 rr|2 
+BVS|REL8|29 rr|2 
+CALL|EXT1|4A hh ll pg|4 
+CALL|IDX|4B xb pg|3 
+CALL|IDX1|4B xb ff pg|4 
+CALL|IDX2|4B xb ee ff pg|5 
+CALL|[D,IDX]|4B xb|2 
+CALL|[IDX2]|4B xb ee ff|4 
+CBA|INH|18 17|2 
+CLC|IMM8|10 FE|2 
+CLI|IMM8|10 EF|2 
+CLR|EXT1|79 hh ll|3 
+CLR|IDX|69 xb|2 
+CLR|IDX1|69 xb ff|3 
+CLR|IDX2|69 xb ee ff|4 
+CLR|[D,IDX]|69 xb|2 
+CLR|[IDX2]|69 xb ee ff|4 
+CLRA|INH|87|1 
+CLRB|INH|C7|1 
+CLV|IMM8|10 FD|2 
+CMPA|IMM8|81 ii|2 
+CMPA|DIR|91 dd|2 
+CMPA|EXT|B1 hh ll|3 
+CMPA|IDX|A1 xb|2 
+CMPA|IDX1|A1 xb ff|3 
+CMPA|IDX2|A1 xb ee ff|4 
+CMPA|[D,IDX]|A1 xb|2 
+CMPA|[IDX2]|A1 xb ee ff|3 
+CMPB|IMM8|C1 ii|2 
+CMPB|DIR|D1 dd|2 
+CMPB|EXT|F1 hh ll|3 
+CMPB|IDX|E1 xb|2 
+CMPB|IDX1|E1 xb ff|3
+CMPB|IDX2|E1 xb ee ff|4 
+CMPB|[D,IDX]|E1 XB|2 
+CMPB|[IDX2]|E1 xb ee ff|4 
+COM|EXT1|71 hh ll|3 
+COM|IDX|61 xb|2 
+COM|IDX1|61 xb ff|3 
+COM|IDX2|61 xb ee ff|4 
+COM|[D,IDX]|61 xb|2 
+COM|[IDX2]|61 xb ee ff|4 
+COMA|INH|41|1 
+COMB|INH|51|1 
+CPD|IMM16|BC jj kk|3 
+CPD|DIR|9C dd|2 
+CPD|EXT|BC hh ll|3 
+CPD|IDX|AC xb|2 
+CPD|IDX1|AC xb ff|3 
+CPD|IDX2|AC xb ee ff|4 
+CPD|[D,IDX]|AC xb|2 
+CPD|[IDX2]|AC xb ee ff|4 
+CPS|IMM16|8F jj kk|3 
+CPS|DIR|9F dd|2 
+CPS|EXT|BF hh ll|3 
+CPS|IDX|AF xb|2 
+CPS|IDX1|AF xb ff|3 
+CPS|IDX2|AF xb ee ff|4 
+CPS|[D,IDX]|AF xb|2 
+CPS|[IDX2]|AF xb ee ff|4 
+CPX|IMM|8E jj kk|3 
+CPX|DIR|9E dd|2 
+CPX|EXT|BE hh ll|3 
+CPX|IDX|AE xb|2 
+CPX|IDX1|AE xb ff|3 
+CPX|IDX2|AE xb ee ff|4 
+CPX|[D,IDX]|AE xb|2 
+CPX|[IDX2]|AE xb ee ff|4 
+CPY|IMM16|8D jj kk|3 
+CPY|DIR|9D dd|2 
+CPY|EXT|BD hh ll|3 
+CPY|IDX|AD xb|2 
+CPY|IDX1|AD xb ff|3 
+CPY|IDX2|AD XB ee ff|4 
+CPY|[D,IDX]|AD xb|2 
+CPY|[IDX2]|AD xb ee ff|4 
+DAA|INH|18 07|2 
+DBEQ|REL8|04 1b rr|3 
+DBNE|REL8|04 1b rr|3 
+DEC|EXT1|73 hh ll|3 
+DEC|IDX|63 xb|2 
+DEC|IDX1|63 xb ff|3 
+DEC|IDX2|63 xb ee ff|4 
+DEC|[D,IDX]|63 xb|2 
+DEC|[IDX2]|63 xb ee ff|4 
+DECA|INH|43|1 
+DECB|INH|53|1 
+DES|IDX|1B 9F|2 
+DEX|INH|09|1 
+DEY|INH|03|1 
+EDIV|INH|11|1 
+EDIVS|INH|18 14|2 
+EMACS|SPECIAL|18 12 hh ll|4 
+EMAXD|IDX|18 1A xb|3 
+EMAXD|IDX1|18 1A xb ff|3 
+EMAXD|IDX2|18 1A xb ee ff|5 
+EMAXD|[D,IDX]|18 1A xb|3 
+EMAXD|[IDX2]|18 1A xb ee ff|5 
+EMAXM|IDX|18 1E xb|3 
+EMAXM|IDX1|18 1E xb ff|4 
+EMAXM|IDX2|18 1E xb ee ff|5 
+EMAXM|[D,IDX]|18 1E xb|3 
+EMAXM|[IDX2]|18 1E xb ee ff|5 
+EMIND|IDX|18 1B xb|3 
+EMIND|IDX1|18 1B xb ff|4 
+EMIND|IDX2|18 1B xb ee ff|5 
+EMIND|[D,IDX]|18 1B xb|3 
+EMIND|[IDX2]|18 1B xb ee ff|5 
+EMINM|IDX|18 1F xb|3 
+EMINM|IDX1|18 1F xb ff|4 
+EMINM|IDX2|18 1F xb ee ff|5 
+EMINM|[D,IDX]|18 1F xb|2 
+EMINM|[IDX2]|18 1F xb ee ff|5 
+EMUL|INH|13|1 
+EMULS|INH|18 13|2 
+EORA|IMM8|88 ii|2 
+EORA|DIR|9B dd|2 
+EORA|EXT|B8 hh ll|3 
+EORA|IDX|A8 xb|2 
+EORA|IDX1|A8 xb ff|3 
+EORA|IDX2|A8 xb ee ff|4 
+EORA|[D,IDX]|A8 xb|2
+EORA|[IDX2]|A8 xb ee ff|4 
+EORB|IMM8|C8 ii|2 
+EORB|DIR|D8 dd|2 
+EORB|EXT|F8 hh ll|3 
+EORB|IDX|E8 xb|2 
+EORB|IDX1|E8 xb ff|3
+EORB|IDX2|E8 xb ee ff|4 
+EORB|[D,IDX]|E8 xb|2 
+EORB|[IDX2]|E8 xb ee ff|4 
+ETBL|IDX|18 3F xb|3 
+EXG|INH|B7 eb|2 
+FDIV|INH|18 ll|2 
+IBEQ|REL16|04 1b rr|3 
+IBNE|REL16|04 1b rr|3 
+IDIV|INH|18 10|2 
+IDIVS|INH|18 15|2 
+INC|EXT|72 hh ll|3
+INC|IDX|62 xb|2 
+INC|IDX1|62 xb ff|3 
+INC|IDX2|62 xb ee ff|4 
+INC|[D,IDX]|62 xb|2 
+INC|[IDX2]|62 xb ee ff|4 
+INCA|INH|42|1 
+INCB|INH|52|1 
+INS|IDX|1B 81|2 
+INX|INH|08|1 
+INY|INH|02|1 
+JMP|EXT|06 hh ll|3 
+JMP|IDX|05 xb|2 
+JMP|IDX1|05 xb ff|3 
+JMP|IDX2|05 xb ee ff|4 
+JMP|[D,IDX]|05 xb|2 
+JMP|[IDX2]|05 xb ee ff|4 
+JSR|DIR|17 dd|2 
+JSR|EXT|16 hh ll|3 
+JSR|IDX|15 xb|2 
+JSR|IDX1|15 xb ff|3 
+JSR|IDX2|15 xb ee ff|4 
+JSR|[D,IDX]|15 xb|2 
+JSR|[IDX2]|15 xb ee ff|4 
+LBCC|REL16|18 24 qq rr|4 
+LBCS|REL16|18 25 qq rr|4 
+LBEQ|REL16|18 27 qq rr|4 
+LBGE|REL16|18 2C qq rr|4 
+LBGT|REL16|18 2E qq rr|4 
+LBHI|REL16|18 22 qq rr|4 
+LBHS|REL16|18 24 qq rr|4 
+LBLE|REL16|18 2F qq rr|4 
+LBLO|REL16|18 25 qq rr|4 
+LBLS|REL16|18 23 qq rr|4 
+LBLT|REL16|18 2D qq rr|4 
+LBMI|REL16|18 2B qq rr|4 
+LBNE|REL16|18 26 qq rr|4 
+LBPL|REL16|18 2A qq rr|4 
+LBRA|REL16|18 20 qq rr|4 
+LBRN|REL16|18 21 qq rr|4 
+LBVC|REL16|18 28 qq rr|4 
+LBVS|REL16|18 29 qq rr|4 
+LDAA|IMM8|86 ii|2 
+LDAA|DIR|96 dd|2 
+LDAA|EXT|B6 hh ll|3 
+LDAA|IDX|A6 xb|2 
+LDAA|IDX1|A6 xb ff|3 
+LDAA|IDX2|A3 xb ee ff|4 
+LDAA|[D,IDX]|A6 xb|2 
+LDAA|[IDX2]|A6 xb ee ff|4 
+LDAB|IMM8|C6 ii|2 
+LDAB|DIR|D6 dd|2 
+LDAB|EXT|F6 hh ll|3 
+LDAB|IDX|E6 xb|2 
+LDAB|IDX1|E6 xb ff|3 
+LDAB|IDX2|E6 xb ee ff|4 
+LDAB|[D,IDX]|E6 xb|2 
+LDAB|[IDX2]|E6 xb ee ff|4 
+LDD|IMM16|CC jj kk|3 
+LDD|DIR|DC dd|2 
+LDD|EXT|FC hh ll|3 
+LDD|IDX|EC xb|2 
+LDD|IDX1|EC xb ff|3 
+LDD|IDX2|EC xb ee ff|4 
+LDD|[D,IDX]|EC xb|2 
+LDD|[IDX2]|EC xb ee ff|4 
+LDS|IMM16|CF jj kk|3 
+LDS|DIR|CF dd|2 
+LDS|EXT|FF hh ll|3 
+LDS|IDX|EF xb|2 
+LDS|IDX1|EF xb ff|3 
+LDS|IDX2|EF xb ee ff|4 
+LDS|[D,IDX]|EF xb|2 
+LDS|[IDX2]|EF xb ee ff|4 
+LDX|IMM16|CE jj kk|3 
+LDX|DIR|DE dd|2 
+LDX|EXT|FE hh ll|3 
+LDX|IDX|EE xb|2 
+LDX|IDX1|EE xb ff|3 
+LDX|IDX2|EE xb ee ff|4 
+LDX|[D,IDX]|EE xb|2 
+LDX|[IDX2]|EE xb ee ff|4 
+LDY|IMM16|CD jj kk|3 
+LDY|DIR|DD dd|2 
+LDY|EXT|FD hh ll|3 
+LDY|IDX|ED xb|2 
+LDY|IDX1|ED xb ff|3 
+LDY|IDX2|ED xb ee ff|4 
+LDY|[D,IDX]|ED xb|2 
+LDY|[IDX2]|ED xb ee ff|4 
+LEAS|IDX|1B xb|2 
+LEAS|IDX1|1B xb ff|3 
+LEAS|IDX2|1B xb ee ff|4 
+LEAX|IDX|1A xb|2 
+LEAX|IDX1|1A xb ff|3 
+LEAX|IDX2|1A xb ee ff|4 
+LEAY|IDX|19 xb|2 
+LEAY|IDX1|19 xb ff|3 
+LEAY|IDX2|19 xb ee ff|4 
+LSL|EXT1|78 hh ll|3 
+LSL|IDX|68 xb|2 
+LSL|IDX1|68 xb ff|3 
+LSL|IDX2|68 xb ee ff|4 
+LSL|[D,IDX]|68 xb|2 
+LSL|[IDX2]|68 xb ee ff|4 
+LSLA|INH|48|1 
+LSLB|INH|58|1 
+LSLD|INH|59|1 
+LSR|EXT1|74 hh ll|3 
+LSR|IDX|64 xb|2 
+LSR|IDX1|64 xb ff|3 
+LSR|IDX2|64 xb ee ff|4 
+LSR|[D,IDX]|64 xb|2 
+LSR|[IDX2]|64 xb ee ff|4 
+LSRA|INH|44|1 
+LSRB|INH|54|1 
+LSRD|INH|49|1 
+MAXA|IDX|18 18 xb|3 
+MAXA|IDX1|18 18 xb ff|4 
+MAXA|IDX2|18 18 xb ee ff|5 
+MAXA|[D,IDX]|18 18 xb|3 
+MAXA|[IDX2]|18 18 xb ee ff|5 
+MAXM|IDX|18 1C xb|3 
+MAXM|IDX1|18 1C xb ff|4
+MAXM|IDX2|18 1C xb ee ff|5 
+MAXM|[D,IDX]|18 1C xb|3 
+MAXM|[IDX2]|18 1C xb ee ff|5 
+MEM|SPECIAL|01|1 
+MINA|IDX|18 19 xb|3 
+MINA|IDX1|18 19 xb ff|4 
+MINA|IDX2|18 19 xb ee ff|5 
+MINA|[D,IDX]|18 19 xb|3 
+MIAN|[IDX2]|18 19 xb ee ff|5 
+MINM|IDX|18 1D xb|3 
+MINM|IDX1|18 1D xb ff|4 
+MINM|IDX2|18 1D xb ee ff|5 
+MINM|[D,IDX]|18 1D xb|3 
+MINM|[IDX2]|18 1D xb ee ff|5 
+MOVB|IMM-EXT|18 0B ii hh ll|5
+MOVB|IMM-IDX|18 08 xb ii|4 
+MOVB|EXT-EXT|18 0C hh ll hh ll|6 
+MOVB|EXT-IDX|18 09 xb hh ll|5 
+MOVB|IDX-EXT|18 0D xb hh ll|5 
+MOVB|IDX-IDX|18 0A xb xb|4 
+MOVW|IMM-EXT|18 03 jj kk hh ll|6 
+MOVW|IMM-IDX|18 00 xb jj kk|5 
+MOVW|EXT-EXT|18 04 hh ll hh ll|6 
+MOVW|EXT-IDX|18 01 xb hh ll|5 
+MOVW|IDX-EXT|18 05 xb hh ll|5 
+MOVW|IDX-IDX|18 02 xb xb|4 
+MUL|INH|12|1 
+NEG|EXT|70 hh ll|3 
+NEG|IDX|60 xb|2 
+NEG|IDX1|60 xb ff|3 
+NEG|IDX2|60 xb ee ff|4 
+NEG|[D,IDX]|60 xb|2 
+NEG|[IDX2]|60 xb ee ff|4 
+NEGA|INH|40|1 
+NEGB|INH|50|1 
+NOP|INH|A7|1 
+ORAA|IMM|8A ii|2 
+ORAA|DIR|9A dd|2 
+ORAA|EXT|BA hh ll|3 
+ORAA|IDX|AA xb|2 
+ORAA|IDX1|AA xb ff|3 
+ORAA|IDX2|AA xb ee ff|4 
+ORAA|[D,IDX]|AA xb|2 
+ORAA|[IDX2]|AA xb ee ff|4 
+ORAB|IMM8|CA ii|2 
+ORAB|DIR|DA dd|2 
+ORAB|EXT|FA hh ll|3 
+ORAB|IDX|EA xb|2 
+ORAB|IDX1|EA xb ff|3 
+ORAB|IDX2|EA xb ee ff|4 
+ORAN|[D,IDX]|EA xb|2 
+ORAB|[IDX2]|EA xb ee ff|4 
+ORCC|IMM8|14 ii|2 
+PSHA|INH|36|1 
+PSHB|INH|37|1 
+PSHC|INH|39|1 
+PSHD|INH|3B|1 
+PSHX|INH|34|1 
+PSHY|INH|35|1 
+PULA|INH|32|1 
+PULB|INH|33|1 
+PULC|INH|38|1 
+PULD|INH|3A|1 
+PULX|INH|30|1 
+PULY|INH|31|1 
+REV|SPECIAL|18 3A|2 
+REVW|SPECIAL|18 3B|2 
+ROL|EXT1|75 hh ll|3 
+ROL|IDX|65 xb|2 
+ROL|IDX1|65 xb ff|3 
+ROL|IDX2|65 xb ee ff|4 
+ROL|[D,IDX]|65 xb|2 
+ROL|[IDX2]|65 xb ee ff|4 
+ROLA|INH|45|1 
+ROLB|INH|55|1 
+ROR|EXT1|76 hh ll|3 
+ROR|IDX|66 xb|2 
+ROR|IDX1|66 xb ff|3 
+ROR|IDX2|66 xb ee ff|4 
+ROR|[D,IDX]|66 xb|2 
+ROR|[IDX2]|66 xb ee ff|4 
+RORA|INH|0A|1 
+RORB|INH|0B|1 
+RTS|INH|3D|1 
+SBA|INH|18 16|2 
+SBCA|IMM8|82 ii|2 
+SBCA|DIR|92 dd|2 
+SBCA|EXT|B2 hh ll|3 
+SBCA|IDX|A2 xb|2 
+SBCA|IDX1|A2 xb ff|3 
+SBCA|IDX2|A2 xb ee ff|4 
+SBCA|[D,IDX]|A2 xb|2 
+SBCA|[IDX2]|A2 xb ee ff|4 
+SBCB|IMM8|C2 ii|2 
+SBCB|DIR|D2 dd|2 
+SBCB|EXT|F2 hh ll|3 
+SBCB|IDX|E2 xb|2 
+SBCB|IDX1|E2 xb ff|3 
+SBCB|IDX2|E2 xb ee ff|4 
+SBCB|[D,IDX]|E2 xb|2 
+SBCB|[IDX2]|E2 xb ee ff|4 
+SEC|IMM8|14 01|2 
+SEI|IMM8|14 10|2 
+SEV|IMM8|14 02|2 
+SEX|INH|B7 eb|2 
+STAA|DIR|5A dd|2 
+STAA|EXT|7A hh ll|3 
+STAA|IDX|6A xb|2 
+STAA|IDX1|6A xb ff|3 
+STAA|IDX2|6A xb ee ff|4 
+STAA|[D,IDX]|6A xb|2 
+STAA|[IDX2]|6A xb ee ff|4 
+STAB|DIR|5B dd|2 
+STAB|EXT|7B hh ll|3 
+STAB|IDX|6B xb|2 
+STAB|IDX1|6B xb ff|3 
+STAB|IDX2|6B xb ee ff|4 
+STAB|[D,IDX]|6B xb|2 
+STAB|[IDX2]|6B xb ee ff|4 
+STD|DIR|5C dd|2 
+STD|EXT|7C hh ll|3 
+STD|IDX|6C xb|2 
+STD|IDX1|6C xb ff|3 
+STD|IDX2|6C xb ee ff|4 
+STD|[D,IDX]|6C xb|2 
+STD|[IDX2]|6C xb ee ff|4 
+STOP|INH|18 3E|2 
+STS|DIR|5F dd|2 
+STS|EXT|7F hh ll|3 
+STS|IDX|6F xb|2 
+STS|IDX1|6F xb ff|3 
+STS|IDX2|6F xb ee ff|4 
+STS|[D,IDX]|6F xb|2 
+STS|[IDX2]|6F xb ee ff|4 
+STX|DIR|5E dd|2 
+STX|EXT|7E hh ll|3 
+STX|IDX|6E xb|2 
+STX|IDX1|6E xb ff|3 
+STX|IDX2|6E xb ee ff|4 
+STX|[D,IDX]|6E xb|2 
+STX|[IDX2]|6E xb ee ff|4 
+STY|DIR|5D dd|2 
+STY|EXT|7D hh ll|3 
+STY|IDX|6D xb|2 
+STY|IDX1|6D xb ff|3 
+STY|IDX2|6D xb ee ff|4 
+STY|[D,IDX]|6D xb|2 
+STY|[IDX2]|6D xb ee ff|4 
+SUBA|IMM8|80 ii|2 
+SUBA|DIR|90 dd|2 
+SUBA|EXT|B0 hh ll|3 
+SUBA|IDX|A0 xb|2 
+SUBA|IDX1|A0 xb ff|3 
+SUBA|IDX2|A0 xb ee ff|4 
+SUBA|[D,IDX]|A0 xb|2 
+SUBA|[IDX2]|A0 xb ee ff|4 
+SUBB|IMM8|C0 ii|2 
+SUBB|DIR|D0 dd|2 
+SUBB|EXT|F0 hh ll|3 
+SUBB|IDX|E0 xb|2 
+SUBB|IDX1|E0 xb ff|3 
+SUBB|IDX2|E0 xb ee ff|4 
+SUBB|[D,IDX]|E0 xb|2 
+SUBB|[IDX2]|E0 xb ee ff|4 
+SUBD|IMM16|83 jj kk|3 
+SUBD|DIR|93 dd|2 
+SUBD|EXT|B3 hh ll|3 
+SUBD|IDX|A3 xb|2 
+SUBD|IDX1|A3 xb ff|3 
+SUBD|IDX2|A3 xb ee ff|4 
+SUBD|[D,IDX]|A3 xb|2 
+SUBD|[IDX2]|A3 xb ee ff|4 
+SWI|INH|3F|1 
+TAB|INH|18 0E|2 
+TAP|INH|B7 02|2 
+TBA|INH|18 0F|2 
+TBEQ|REL|04 lb rr|3
+TBL|IDX|18 3D xb|3 
+TBNE|REL16|04 lb rr|3 
+TFR|INH|B7 eb|2 
+TPA|INH|B7 20|2 
+TRAP|INH|18 tn|2 
+TST|EXT1|F7 hh ll|3 
+TST|IDX|E7 xb|2 
+TST|IDX1|E7 xb ff|3 
+TST|IDX2|E7 xb ee ff|4 
+TST|[D,IDX]|E7 xb|2 
+TST|[IDX2]|E7 xb ee ff|4 
+TSTA|INH|97|1 
+TSTB|INH|D7|1 
+TSX|INH|B7 75|2 
+TSY|INH|B7 76|2 
+TXS|INH|B7 57|2 
+TYS|INH|B7 67|2 
+WAI|INH|3E|1 
+WAV|SPECIAL|18 3C|2 
+WAVR|SPECIAL|3C|1 
+XGDX|INH|B7 C5|2 
+XGDY|INH|B7 C6|2
+ORG|END|DCB|EQU
+DCB.B|DCB.L|FCC
+DS|DS.B|DS.W
+DS.L|DC.B
